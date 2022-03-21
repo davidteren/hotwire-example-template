@@ -1,0 +1,37 @@
+<div id="alerts" class="absolute bottom-0 right-0 w-96"></div>
+
+<fieldset>
+  <legend>Copy</legend>
+
+  <label>
+    Invitation code
+
+    <input value="<%= @invitation_code %>" readonly>
+  </label>
+
+  <button type="button" value="<%= @invitation_code %>"
+          data-controller="clipboard clone"
+          data-action="click->clipboard#copy click->clone#append">
+    Copy to clipboard
+
+    <template data-clone-target="template">
+      <turbo-stream action="append" target="alerts">
+        <template>
+          <div role="alert" class="border border-solid rounded-md m-4 p-4"
+               data-controller="auto-remove" data-auto-remove-delay-value="10000">
+            Copied to clipboard
+          </div>
+        </template>
+      </turbo-stream>
+    </template>
+  </button>
+</fieldset>
+
+<fieldset>
+  <legend>Paste</legend>
+
+  <label>
+    Invitation code
+    <input>
+  </label>
+</fieldset>
